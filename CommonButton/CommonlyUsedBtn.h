@@ -6,12 +6,12 @@
 //  Copyright © 2016年 all. All rights reserved.
 //
 
+
+#import <UIKit/UIKit.h>
 typedef NS_ENUM(NSInteger, CommonlyUsedBtnType) {
     CommonlyUsedBtnTypeImageLeft = 0,
     CommonlyUsedBtnTypeImageRight = 1,
 };
-#import <UIKit/UIKit.h>
-
 @interface CommonlyUsedBtn : UIButton
 
 @property (assign, nonatomic) CommonlyUsedBtnType btnType;

@@ -33,13 +33,13 @@
         [self setUpProperty];
         if (normalImageName)
         {
-            UIImage *image = kGetImage(normalImageName);
+            UIImage *image = [UIImage imageNamed:normalImageName];
             [self setImage:image forState:UIControlStateNormal];
             [self setImage:image forState:UIControlStateSelected];
         }
         if (selectImageName)
         {
-            UIImage *image = kGetImage(selectImageName);
+            UIImage *image = [UIImage imageNamed:selectImageName];
             [self setImage:image forState:UIControlStateSelected];
         }
         
@@ -90,7 +90,7 @@
 - (void)setTitle:(NSString *)title forState:(UIControlState)state
 {
     [super setTitle:title forState:state];
-    self.titleWidth = [title boundingRectWithSize:CGSizeMake(0, self.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.titleLabel.font} context:nil].size.width;
+    self.titleWidth = [title boundingRectWithSize:CGSizeMake(0, self.frame.size.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.titleLabel.font} context:nil].size.width;
 }
 
 - (void)setImage:(UIImage *)image forState:(UIControlState)state
@@ -118,29 +118,29 @@
     CGFloat totalWidth = self.titleWidth + self.imageWidth + self.gap;
     if (self.btnType == CommonlyUsedBtnTypeImageRight)
     {
-        if (totalWidth > self.width)
+        if (totalWidth > self.frame.size.width)
         {
-            CGFloat x = self.width - self.imageWidth;
+            CGFloat x = self.frame.size.width - self.imageWidth;
             CGFloat y = 0;
             CGFloat width = self.imageWidth;
-            CGFloat height = self.height;
+            CGFloat height = self.frame.size.height;
             return CGRectMake(x, y, width, height);
         }
         else
         {
-            CGFloat x = (self.width - totalWidth) / 2 + self.titleWidth + self.gap;
+            CGFloat x = (self.frame.size.width - totalWidth) / 2 + self.titleWidth + self.gap;
             CGFloat y = 0;
             CGFloat width = self.imageWidth;
-            CGFloat height = self.height;
+            CGFloat height = self.frame.size.height;
             return CGRectMake(x, y, width, height);
         }
     }
     else
     {
-        CGFloat x = (self.width - totalWidth) / 2;
+        CGFloat x = (self.frame.size.width - totalWidth) / 2;
         CGFloat y = 0;
         CGFloat width = self.imageWidth;
-        CGFloat height = self.height;
+        CGFloat height = self.frame.size.height;
         return CGRectMake(x, y, width, height);
     }
 }
@@ -150,29 +150,29 @@
     CGFloat totalWidth = self.titleWidth + self.imageWidth + self.gap;
     if (self.btnType == CommonlyUsedBtnTypeImageRight)
     {
-        if (totalWidth > self.width)
+        if (totalWidth > self.frame.size.width)
         {
             CGFloat x = 0;
             CGFloat y = 0;
-            CGFloat width = self.width - self.tag - self.imageWidth;
-            CGFloat height = self.height;
+            CGFloat width = self.frame.size.width - self.tag - self.imageWidth;
+            CGFloat height = self.frame.size.height;
             return CGRectMake(x, y, width, height);
         }
         else
         {
-            CGFloat x = (self.width - totalWidth) / 2;
+            CGFloat x = (self.frame.size.width - totalWidth) / 2;
             CGFloat y = 0;
             CGFloat width = self.titleWidth;
-            CGFloat height = self.height;
+            CGFloat height = self.frame.size.height;
             return CGRectMake(x, y, width, height);
         }
     }
     else
     {
-        CGFloat x = (self.width - totalWidth) / 2 + self.imageWidth + self.gap;
+        CGFloat x = (self.frame.size.width - totalWidth) / 2 + self.imageWidth + self.gap;
         CGFloat y = 0;
         CGFloat width = self.titleWidth;
-        CGFloat height = self.height;
+        CGFloat height = self.frame.size.height;
         return CGRectMake(x, y, width, height);
     }
 }
